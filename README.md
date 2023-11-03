@@ -59,6 +59,12 @@ When *setTimeout(callback, ms)* invoked, Node puts a *callback* in the timer pha
 **For you to do**:
 
 1. In "eventloop/timer.js", what will be the order of execution?
+foo
+baz
+foo
+baz
+2 : bar
+1 : bar
 
 2. How many callbacks will the timers phase queue have after the script is run? 
 
@@ -72,8 +78,14 @@ The poll phase is actually a blocking phase. If the callback queue associated wi
 
 **For you to do**:
 1. Run the script "eventloop/poll_timer.js". Explain the order of execution in terms of the messages you see in the console.
+someAsyncOperation
+101ms have passed since I was scheduled
 2. Change "Date.now() - startCallback < 10" in line 21 to "Date.now() - startCallback < 150". Will the order of execution change?
+someAsyncOperation
+150ms have passed since I was scheduled
 3. Set timeout to 0. Will the order of execution change?
+someAsyncOperation
+151ms have passed since I was scheduled
 
 **For you to do**:
 1. Run the script in "eventloop/immediate.js". What order of execution do you see in terms of the messages being logged.
@@ -85,7 +97,6 @@ The *process.nextTick()* API allows us to schedule tasks before the event loop.
 1. Run the script "eventloop/tick_immediate.js". Explain the order of execution in terms of the messages logged.
 2. Run the script "eventloop/tick_immediate.js". Why doesn't setTimeout get executed? 
 3. How does the output change if we replace process.nexTick(cb) with setImmediate(cb)?
-4. Why does the script "eventloop/eventemit.js" not log the event message? Change it such that the event message gets logged.
 
 
 ## Asynchronous Programming
